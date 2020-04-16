@@ -1,6 +1,7 @@
 package com.example.madproject;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ public class otplogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otplogin);
         name=findViewById(R.id.editname);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
         editTextMobile = findViewById(R.id.editTextMobile);
         final Intent intent2 = new Intent(otplogin.this, VerifyPhoneActivity.class);
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {

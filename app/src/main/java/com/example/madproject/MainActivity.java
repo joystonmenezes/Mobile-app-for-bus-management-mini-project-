@@ -1,6 +1,7 @@
 package com.example.madproject;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,7 @@ Button b;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
         //first we intialized the FirebaseAuth object
         mAuth = FirebaseAuth.getInstance();
       /*  // Initialize your instance of callbackManager//
@@ -138,7 +139,7 @@ startActivity(intent1);
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        final Intent intent = new Intent(this, activity_profile.class);
+        final Intent intent = new Intent(this, Main3Activity.class);
         //getting the auth credential 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
 
