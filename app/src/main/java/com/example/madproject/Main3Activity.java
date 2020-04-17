@@ -50,7 +50,7 @@ public class Main3Activity extends AppCompatActivity implements NavigationView.O
         NavigationUI.setupWithNavController(navigationView, navController);
         mAuth = FirebaseAuth.getInstance();
 
-        
+
         b=(Button)findViewById(R.id.button3);
         signout=(Button)findViewById(R.id.button5);
         signout.setOnClickListener(new View.OnClickListener() {
