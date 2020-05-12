@@ -16,16 +16,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dataresult"></activity>
+        <activity android:name=".about"></activity>
+        <activity android:name=".bookings" />
+        <activity android:name=".dataadd" />
+        <activity android:name=".busadd" />
+        <activity android:name=".adminpage" />
+        <activity android:name=".admin" />
+        <activity android:name=".game" />
+        <activity android:name=".dataresult" />
         <activity
             android:name=".Main3Activity"
             android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".bussearch" />
         <activity android:name=".fblogin" />
-
         <activity android:name=".otplogin" />
-
         <activity android:name=".VerifyPhoneActivity" />
 
         <meta-data

@@ -25,7 +25,7 @@ Spinner spinner1,spinner2;
     // This will get the radiobutton in the radiogroup that is checked
     RadioButton checkedRadioButton;
     TextView from,to;
-    Intent intent;
+    Intent intent,prev;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +44,9 @@ Spinner spinner1,spinner2;
 
        spinner2.setVisibility(View.INVISIBLE);
 
-
+prev=getIntent();
+intent.putExtra("user",prev.getStringExtra("user"));
+intent.putExtra("contact",prev.getStringExtra("contact"));
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,9 +100,9 @@ Spinner spinner1,spinner2;
             spinner1.setVisibility(View.INVISIBLE);
             intent.putExtra("karkala","to");
         }
-        else
+        else if(checkedId==R.id.radioButton)
         {
-            intent.putExtra("karkala","to");
+            intent.putExtra("karkala","from");
             to.setVisibility(View.INVISIBLE);
             findViewById(R.id.textView11).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView7).setVisibility(View.VISIBLE);

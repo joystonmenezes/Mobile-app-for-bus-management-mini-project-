@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     //a constant for detecting the login intent result
     private static final int RC_SIGN_IN = 234;
-Button b;
+Button b,admin;
 
     //creating a GoogleSignInClient object
     GoogleSignInClient mGoogleSignInClient;
@@ -42,35 +42,7 @@ Button b;
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
         //first we intialized the FirebaseAuth object
         mAuth = FirebaseAuth.getInstance();
-      /*  // Initialize your instance of callbackManager//
-        callbackManager = CallbackManager.Factory.create();
 
-        // Register your callback//
-        LoginManager.getInstance().registerCallback(callbackManager,
-
-                // If the login attempt is successful, then call onSuccess and pass the LoginResult//
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // Print the user’s ID and the Auth Token to Android Studio’s Logcat Monitor//
-                        Log.d(TAG, "User ID: " +
-                                loginResult.getAccessToken().getUserId() + "\n" +
-                                "Auth Token: " + loginResult.getAccessToken().getToken());
-                        startActivity(new Intent(MainActivity.this,activity_profile.class));
-                        Toast.makeText(getApplicationContext(),"loginn",Toast.LENGTH_SHORT).show();
-                    }
-
-                    // If the user cancels the login, then call onCancel//
-                    @Override
-                    public void onCancel() { Log.d(TAG,"CANCEL");
-                    }
-
-                    // If an error occurs, then call onError//
-                    @Override
-                    public void onError(FacebookException exception) {
-                        Log.d(TAG,"ERROR");
-                    }
-                });*/
         b=(Button)findViewById(R.id.button2);
         final Intent intent1=new Intent(this,otplogin.class);
 b.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +70,13 @@ startActivity(intent1);
             @Override
             public void onClick(View view) {
                 signIn();
+            }
+        });
+        admin=(Button)findViewById(R.id.button7);
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, com.example.madproject.admin.class));
             }
         });
     }

@@ -30,6 +30,8 @@ public class Main3Activity extends AppCompatActivity implements NavigationView.O
     TextView textView;
     FirebaseAuth mAuth;
     Button b,signout;
+    Intent prev;
+    String name,cont;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,22 +62,45 @@ public class Main3Activity extends AppCompatActivity implements NavigationView.O
                 startActivity(new Intent(Main3Activity.this,MainActivity.class));
             }
         });
+        final FirebaseUser user = mAuth.getCurrentUser();
+        prev=getIntent();
+if(prev.getStringExtra("name")==null) {
+    name = user.getDisplayName();
+    cont =  user.getEmail();
+}
+else
+{
+    name=prev.getStringExtra("name");
+    cont=prev.getStringExtra("phone") ;
+}
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main3Activity.this,bussearch.class));
+                Intent intent=new Intent(Main3Activity.this,bussearch.class);
+
+               intent.putExtra("user",name);
+               intent.putExtra("contact",cont);
+                startActivity(intent);
             }
         });
+final Button game=(Button)findViewById(R.id.button6);
+game.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(Main3Activity.this,game.class));
+    }
+});
 
-        FirebaseUser user = mAuth.getCurrentUser();
+
 
 
 
        // textView.setText("Welcome\n"+user.getDisplayName());
-View header=navigationView.getHeaderView(0);
-        //TextView t=header.findViewById(R.id.nav_mail);
+//View header=navigationView.getHeaderView(0);
+       // TextView t=header.findViewById(R.id.nav_mail);
 
-        //t.setText(user.getDisplayName());
+     //   t.setText(user.getDisplayName().toString()+prev.getStringExtra("name").toString());
 setNavigationViewListener();
     }
 
@@ -113,20 +138,27 @@ setNavigationViewListener();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.nav_search:{
-               // Toast.makeText(getApplicationContext(),"test",Toast.LENGTH_SHORT).show();
-              startActivity(new Intent(Main3Activity.this,bussearch.class));
+        switch(item.getItemId()) {
+            case R.id.nav_search: {
+                final FirebaseUser user = mAuth.getCurrentUser();
+                Intent intent = new Intent(Main3Activity.this, bussearch.class);
+                intent.putExtra("user", user.getDisplayName().toString() + prev.getStringExtra("name").toString());
+                intent.putExtra("contact", user.getEmail().toString() + prev.getStringExtra("phone").toString());
+                startActivity(intent);
                 break;
             }
-            case R.id.nav_game:{
-                //startActivity(new Intent(Main3Activity.this,dataresult.class));
+            case R.id.nav_game: {
+                startActivity(new Intent(Main3Activity.this, game.class));
                 break;
             }
-            case R.id.nav_signout:{
+            case R.id.nav_signout: {
                 mAuth.signOut();
-                startActivity(new Intent(Main3Activity.this,MainActivity.class));
+                startActivity(new Intent(Main3Activity.this, MainActivity.class));
                 break;
+            }
+            case R.id.aboutus:
+            {
+                startActivity(new Intent(Main3Activity.this,about.class));
             }
         }
         return true;
